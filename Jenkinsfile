@@ -25,11 +25,11 @@ pipeline {
 		}
 		stage('Deploy Container') {
 			steps {
-				sh ...
+				sh '''
 				docker stop $IMAGE_NAME || true
 				docker rm $IMAGE_NAME || true
 				docker run -d --name $IMAGE_NAME -p 80:80 $REGISTRY/$IMAGE_NAME: $BUILD_NUMBER
-				...
+				'''
 			}
 		}
 	}
